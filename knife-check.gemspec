@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Vasiliev D.V."]
   s.email       = %w(vadv.mkn@gmail.com)
   s.homepage    = "https://github.com/vadv/knife-check"
-  s.summary     = %q{Setup chef on machine.}
-  s.description = %q{Allows you to bootsrap machine and set role and env.}
+  s.summary     = %q{Check role, envs, cookbooks.}
+  s.description = %q{Allows you to syntax check roles, env, cookbooks - all in one.}
   s.licenses    = %w(MIT)
   
   s.add_dependency('chef')
