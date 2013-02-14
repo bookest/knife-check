@@ -4,7 +4,7 @@ require 'knife-check/version'
 
 Gem::Specification.new do |s|
   s.name        = "knife-check"
-  s.version     = Knife::Setup::VERSION
+  s.version     = Knife::Check::VERSION
   s.authors     = ["Vasiliev D.V."]
   s.email       = %w(vadv.mkn@gmail.com)
   s.homepage    = "https://github.com/vadv/knife-check"
