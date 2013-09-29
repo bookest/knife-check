@@ -42,8 +42,10 @@ module KnifePlugin
       require 'pathname'
     end
 
-    def run 
-      if config[:roles] 
+    def run
+      if name_args.size > 0
+        name_args.each { |f| check_file(f) }
+      elsif config[:roles]
         test_object("roles/*", "role")
       elsif config[:environments]
         test_object("environments/*", "environment")
@@ -87,23 +89,24 @@ module KnifePlugin
       end 
     end
 
+    def check_file(file)
+      fname = Pathname.new(file).basename
+      if "#{fname}".end_with?('.json')
+        ui.msg("Testing file #{file}")
+        json = File.new(file, 'r')
+        parser = Yajl::Parser.new
+        hash = parser.parse(json)
+      elsif "#{fname}".end_with?('.rb')
+        ui.msg("Testing file #{file}")
+        result = `ruby -wc #{file}`
+      end
+    end
+
     # Common method to test file syntax
     def check_syntax(dirpath, dir = nil, type)
       files = Dir.glob("#{dirpath}").select { |f| File.file?(f) }
-      files.each do |file|
-        fname = Pathname.new(file).basename
-        if ("#{fname}".end_with?('.json'))
-          ui.msg("Testing file #{file}")
-          json = File.new(file, 'r')
-          parser = Yajl::Parser.new
-          hash = parser.parse(json)
-        elsif("#{fname}".end_with?('.rb'))
-          ui.msg("Testing file #{file}")
-          result = `ruby -wc #{file}`
-        end 
-      end 
+      files.each { |file| check_file(file) }
     end
-
   end
 end
 
