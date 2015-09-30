@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version     = Knife::Check::VERSION
   s.authors     = ["Vasiliev D.V."]
   s.email       = %w(vadv.mkn@gmail.com)
-  s.homepage    = "https://github.com/vadv/knife-check"
+  s.homepage    = "https://github.com/bookest/knife-check"
   s.summary     = %q{Check role, envs, cookbooks.}
   s.description = %q{Allows you to syntax check roles, env, cookbooks - all in one.}
   s.licenses    = %w(MIT)
